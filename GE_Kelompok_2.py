@@ -32,14 +32,16 @@ def loadData(filename, sheetNum, colNum, data):
 # FUNGSI MEMBANGKITKAN POPULASI SEBANYAK nPop KROMOSOM sebanyak nGen GEN
 def generatePopulation(population, nPop, nGen, nBit):
 	for x in range(nPop):
-		population.update({"Chromosome-%d" % (x+1) : [[random.randint(0,1) for x in range(nBit)] for y in range(nGen)]})
+		population.update({"Chromosome-%d" % (x+1) : [random.randint(0,1) for x in range(nBit*nGen)]})
 	return population
 
 # FUNGSI UNTUK KONVERSI KROMOSOM BINER KE KROMOSOM INTEGER
-def populationConvert(population):
+def populationConvert(population, nBit):
 	for key in population.keys():
 		newGen = []
-		for val in population[key]:
+		chrom = [population[key][i:i+nBit] for i in range(0, len(population[key]), nBit)]
+		print(len(chrom))
+		for val in chrom:
 			newGen.append(toDecimal(val))
 		population[key] = newGen
 	return population
@@ -70,7 +72,7 @@ productionRules = {
 # loadData("DataHistorisANTAM.xlsx", 0, 11, data_train)
 
 population = generatePopulation(population, nPop, nGen, nBit)
-population = populationConvert(population)
+population = populationConvert(population, nBit)
 showPopulation(population)
 
 
