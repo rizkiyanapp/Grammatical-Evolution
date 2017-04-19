@@ -15,7 +15,7 @@ import math as mt
 import xlrd
 
 
-
+# FUNGSI UNTUK KONVERSI BINER KE DESIMAL
 def toDecimal(binarys):
 	total = 0
 	for x in range(len(binarys)):
@@ -56,6 +56,8 @@ def showPopulation(population):
 # KAMUS DATA
 data_train = []
 population = {}
+
+# PARAMETER
 nBit = 8
 nGen = 10
 nPop = 100
@@ -67,14 +69,9 @@ productionRules = {
 	'var' : 'x'
 }
 
-
 # MAIN PROGRAM
 # loadData("DataHistorisANTAM.xlsx", 0, 11, data_train)
 
 population = generatePopulation(population, nPop, nGen, nBit)
 population = populationConvert(population, nBit)
 showPopulation(population)
-
-
-
-# TEST CODE
